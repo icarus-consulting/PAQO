@@ -23,6 +23,10 @@
           <id>HighestGearRatio</id>
           <name>Highest Gear Ratio</name>
         </decimal>
+        <date>
+          <id>BuyDate</id>
+          <name>Date of Purchase</name>
+        </date>
         <switch>
           <id>Damaged</id>
           <name>Damaged</name>
