@@ -106,5 +106,67 @@ namespace PAQO.Core.Prop
             )
             { }
         }
+
+        /// <summary>
+        /// Prop as long.
+        /// Defaults to 0 on error.
+        /// </summary>
+        public sealed class AsLong : ScalarEnvelope<long>
+        {
+            /// <summary>
+            /// Prop as long.
+            /// Defaults to 0 on error.
+            /// </summary>
+            public AsLong(IProp prop) : this(prop, mismatched => 0)
+            { }
+
+            /// <summary>
+            /// Prop as long.
+            /// Defaults to 0 on error.
+            /// </summary>
+            public AsLong(byte[] prop) : this(() => prop, mismatched => 0)
+            { }
+
+            /// <summary>
+            /// Prop as long.
+            /// Defaults to 0 on error.
+            /// </summary>
+            public AsLong(IProp prop, Func<byte[], long> fallback) : this(() =>
+                prop.Content(),
+                fallback
+            )
+            { }
+
+            /// <summary>
+            /// Prop as long.
+            /// Defaults to 0 on error.
+            /// </summary>
+            public AsLong(string propName, IElement element) : this(() =>
+                element.Props().Content(propName),
+                mismatched => 0
+            )
+            { }
+
+            /// <summary>
+            /// Prop as long.
+            /// Defaults to 0 on error.
+            /// </summary>
+            private AsLong(Func<byte[]> prop, Func<byte[], long> fallback) : base(() =>
+            {
+                var bytes = prop();
+                long result;
+                if (bytes.Length == 4 || bytes.Length == 8)
+                {
+                    result = BitConverter.ToInt64(bytes, 0);
+                }
+                else
+                {
+                    result = fallback(bytes);
+                }
+                return result;
+            }
+            )
+            { }
+        }
     }
 }
