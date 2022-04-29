@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="vehicles-schema.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="vehicles-schema.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PAQO.Core\PAQO.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Core\Proto\element.proto" />
+    <None Remove="Core\Proto\group.proto" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.18.0" />
+    <PackageReference Include="Grpc.Core" Version="2.41.1" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.40.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.41.1" PrivateAssets="All" />
+    <PackageReference Include="Yaapii.Pulse" Version="1.1.0" />
+    <PackageReference Include="Yaapii.Xml" Version="1.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PAQO.Core\PAQO.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="**/*.proto">
+      <GrpcServices>Both</GrpcServices>
+    </Protobuf>
+  </ItemGroup>
+
+</Project>

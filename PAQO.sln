@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32002.185
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAQO.Core", "src\PAQO.Core\PAQO.Core.csproj", "{73778CAB-1A87-48F3-903B-1C1A497D5EB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAQO.Core.Test", "tests\PAQO.Core.Test\PAQO.Core.Test.csproj", "{B698BC7D-2098-4E38-9E2E-724D5DA42C7F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAQO.Memory.LiteDB", "src\PAQO.Memory.LiteDB\PAQO.Memory.LiteDB.csproj", "{E32AB1EF-B445-4025-B408-DF6CBB469EAD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAQO.Memory.LiteDB.Test", "tests\PAQO.Memory.LiteDB.Test\PAQO.Memory.LiteDB.Test.csproj", "{E24CA3A2-4FDE-418F-986D-8820797DC6EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAQO.TestDatum", "Tests\PAQO.TestDatum\PAQO.TestDatum.csproj", "{5A18C076-E0F6-4E77-AE3A-C35E28BEBAF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAQO.Grpc", "src\PAQO.Grpc\PAQO.Grpc.csproj", "{69515212-95FF-4F31-AA8B-86D0676CCD6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAQO.Grpc.Tests", "tests\PAQO.Grpc.Tests\PAQO.Grpc.Tests.csproj", "{47F5F123-7CEC-4AD8-9228-D9F663FCFCD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		16K Locations-Path Debug built to eMPower|Any CPU = 16K Locations-Path Debug built to eMPower|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73778CAB-1A87-48F3-903B-1C1A497D5EB4}.16K Locations-Path Debug built to eMPower|Any CPU.ActiveCfg = Debug|Any CPU
+		{73778CAB-1A87-48F3-903B-1C1A497D5EB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73778CAB-1A87-48F3-903B-1C1A497D5EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73778CAB-1A87-48F3-903B-1C1A497D5EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73778CAB-1A87-48F3-903B-1C1A497D5EB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B698BC7D-2098-4E38-9E2E-724D5DA42C7F}.16K Locations-Path Debug built to eMPower|Any CPU.ActiveCfg = Debug|Any CPU
+		{B698BC7D-2098-4E38-9E2E-724D5DA42C7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B698BC7D-2098-4E38-9E2E-724D5DA42C7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B698BC7D-2098-4E38-9E2E-724D5DA42C7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B698BC7D-2098-4E38-9E2E-724D5DA42C7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E32AB1EF-B445-4025-B408-DF6CBB469EAD}.16K Locations-Path Debug built to eMPower|Any CPU.ActiveCfg = Debug|Any CPU
+		{E32AB1EF-B445-4025-B408-DF6CBB469EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E32AB1EF-B445-4025-B408-DF6CBB469EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E32AB1EF-B445-4025-B408-DF6CBB469EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E32AB1EF-B445-4025-B408-DF6CBB469EAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E24CA3A2-4FDE-418F-986D-8820797DC6EE}.16K Locations-Path Debug built to eMPower|Any CPU.ActiveCfg = Debug|Any CPU
+		{E24CA3A2-4FDE-418F-986D-8820797DC6EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E24CA3A2-4FDE-418F-986D-8820797DC6EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E24CA3A2-4FDE-418F-986D-8820797DC6EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E24CA3A2-4FDE-418F-986D-8820797DC6EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A18C076-E0F6-4E77-AE3A-C35E28BEBAF7}.16K Locations-Path Debug built to eMPower|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A18C076-E0F6-4E77-AE3A-C35E28BEBAF7}.16K Locations-Path Debug built to eMPower|Any CPU.Build.0 = Debug|Any CPU
+		{5A18C076-E0F6-4E77-AE3A-C35E28BEBAF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A18C076-E0F6-4E77-AE3A-C35E28BEBAF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A18C076-E0F6-4E77-AE3A-C35E28BEBAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A18C076-E0F6-4E77-AE3A-C35E28BEBAF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69515212-95FF-4F31-AA8B-86D0676CCD6D}.16K Locations-Path Debug built to eMPower|Any CPU.ActiveCfg = Debug|Any CPU
+		{69515212-95FF-4F31-AA8B-86D0676CCD6D}.16K Locations-Path Debug built to eMPower|Any CPU.Build.0 = Debug|Any CPU
+		{69515212-95FF-4F31-AA8B-86D0676CCD6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69515212-95FF-4F31-AA8B-86D0676CCD6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69515212-95FF-4F31-AA8B-86D0676CCD6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69515212-95FF-4F31-AA8B-86D0676CCD6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47F5F123-7CEC-4AD8-9228-D9F663FCFCD2}.16K Locations-Path Debug built to eMPower|Any CPU.ActiveCfg = Debug|Any CPU
+		{47F5F123-7CEC-4AD8-9228-D9F663FCFCD2}.16K Locations-Path Debug built to eMPower|Any CPU.Build.0 = Debug|Any CPU
+		{47F5F123-7CEC-4AD8-9228-D9F663FCFCD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47F5F123-7CEC-4AD8-9228-D9F663FCFCD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47F5F123-7CEC-4AD8-9228-D9F663FCFCD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47F5F123-7CEC-4AD8-9228-D9F663FCFCD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBF7D002-27F7-46CC-884D-BAB1EC5B7402}
+	EndGlobalSection
+EndGlobal

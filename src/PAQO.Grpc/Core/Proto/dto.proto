@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "PAQO.Grpc.Core.DTO";
+package PAQO.Grpc.Core;
+
+// DTO's
+message RpcQuery {
+    string queryBrix = 1;
+    
+}
+
+// A prop 
+message RpcProp {
+    string name = 1;
+    bytes content = 2;
+}
+
+
+// A single element
+message RpcElement {
+    string id = 1;
+    repeated RpcProp props = 2;
+}

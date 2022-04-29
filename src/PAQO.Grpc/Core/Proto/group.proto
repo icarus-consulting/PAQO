@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+import "Core/Proto/dto.proto";
+
+option csharp_namespace = "PAQO.Grpc.Core.Group";
+package PAQO.Grpc.Core;
+
+service Group {
+    rpc Find(FindParams) returns (stream RpcElement);
+    rpc Update(UpdateParams) returns (google.protobuf.Empty);
+    rpc Add(AddParams) returns (google.protobuf.Empty);
+    rpc Remove(RemoveParams) returns (google.protobuf.Empty);
+}
+
+message FindParams {
+    string elementType = 1;
+    RpcQuery query = 2;
+    int32 start = 3;
+    int32 amount = 4;
+}
+
+message UpdateParams {
+    string elementType = 1;
+    RpcQuery query = 2;
+    repeated RpcProp props = 3;
+}
+
+message AddParams {
+    string elementType = 1;
+    repeated RpcElement elements = 2;
+}
+
+message RemoveParams {
+    string elementType = 1;
+    RpcQuery query = 2;
+}

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<schema>
+  <bike>
+    <attributes>
+      <always>
+        <text>
+          <id>id</id>
+          <name>Mobile ID</name>
+        </text>
+        <text>
+          <id>ModelName</id>
+          <name>Model</name>
+        </text>
+        <text>
+          <id>Name</id>
+          <name>Name</name>
+        </text>
+        <integer>
+          <id>MaxSpeed</id>
+          <name>Maximum Speed</name>
+        </integer>
+        <decimal>
+          <id>HighestGearRatio</id>
+          <name>Highest Gear Ratio</name>
+        </decimal>
+        <switch>
+          <id>Damaged</id>
+          <name>Damaged</name>
+        </switch>
+        <options>
+          <id>DriveType</id>
+          <name>Drive Type</name>
+          <option>
+            <value>0</value>
+            <name>Electric</name>
+          </option>
+          <option>
+            <value>1</value>
+            <name>Combustion</name>
+          </option>
+          <option>
+            <value>2</value>
+            <name>Muscle</name>
+          </option>
+        </options>
+        <complex>
+          <id>AntiTheftCode</id>
+          <name>Anti Theft Code</name>
+          <data>40,30,23,24,56</data>
+        </complex>
+      </always>
+      <depending>
+          <on>DriveType</on>
+          <branch>
+            <when>0</when>
+            <text>
+              <id>Something</id>
+              <name>Something</name>
+            </text>
+            <options>
+              <id>EnergySource</id>
+              <name>EnergySource</name>
+              <option>
+                <value>0</value>
+                <name>Atomic</name>
+              </option>
+              <option>
+                <value>1</value>
+                <name>Solar</name>
+              </option>
+            </options>
+          </branch>
+          <branch>
+            <when>1</when>
+            <integer>
+              <id>integerprop2</id>
+              <name>Another Number</name>
+            </integer>
+            <options>
+              <id>FuelType</id>
+              <name>Fuel Type</name>
+              <option>
+                <value>0</value>
+                <name>Diesel</name>
+              </option>
+              <option>
+                <value>0</value>
+                <name>Gasoline</name>
+              </option>              
+            </options>
+          </branch>
+          <branch>
+            <when>2</when>
+            <text>
+              <id>textprop2</id>
+              <name>Something</name>
+            </text>
+          </branch>
+        </depending>
+    </attributes>
+  </bike>
+  <car>
+    <attributes>
+      <always>
+        <text>
+          <id>id</id>
+          <name>Mobile ID</name>
+        </text>
+        <text>
+          <id>ModelName</id>
+          <name>Model</name>
+        </text>
+      </always>
+    </attributes>
+  </car>
+</schema>

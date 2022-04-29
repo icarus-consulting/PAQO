@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+import "Core/Proto/dto.proto";
+
+option csharp_namespace = "PAQO.Grpc.Core.Element";
+package PAQO.Grpc.Core;
+
+service Element {
+  rpc Update(UpdateParams) returns (google.protobuf.Empty);
+}
+
+message UpdateParams {
+  repeated RpcProp props = 1;
+}
