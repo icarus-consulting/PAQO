@@ -35,7 +35,7 @@ var isWindows                       = IsRunningOnWindows();
 
 // For GitHub release
 var owner                           = "icarus-consulting";
-var repository                      = "Yaapii.Pulse";
+var repository                      = "PAQO";
 
 // For AppVeyor NuGetFeed
 var nuGetSource             = "https://api.nuget.org/v3/index.json";
