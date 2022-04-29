@@ -66,6 +66,20 @@ namespace PAQO.Core.Find
         { }
 
         /// <summary>
+        /// Matches if given prop is greater than the given one.
+        /// Type is important and checked against the given schema.
+        /// </summary>
+        /// <param name="prop">name of the prop.</param>
+        /// <param name="schema">value of the prop as string.</param>
+        /// <param name="stringToBytes">swap string value into bytes, type based on given schema.</param>
+        public GTEMatch(string propName, long value, IDictionary<string, string> propTypes) : this(
+            propName, () =>
+            BitConverter.GetBytes(value),
+            propTypes
+        )
+        { }
+
+        /// <summary>
         /// Matches if given prop is greater than or equal to the given one.
         /// Type is important and checked against the given schema.
         /// </summary>
@@ -97,6 +111,9 @@ namespace PAQO.Core.Find
                 ),
                 new SwapIf<byte[], bool>(
                     "integer", (propValue) => new IntProp.AsInt(propValue).Value() >= new IntProp.AsInt(value()).Value()
+                ),
+                new SwapIf<byte[], bool>(
+                    "date", (propValue) => new IntProp.AsLong(propValue).Value() >= new IntProp.AsLong(value()).Value()
                 ),
                 new SwapIf<byte[], bool>(
                     "switch", (propValue) =>

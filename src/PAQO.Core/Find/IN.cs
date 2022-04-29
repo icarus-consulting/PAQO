@@ -22,6 +22,7 @@
 
 
 using BriX;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Yaapii.Atoms.Enumerable;
@@ -40,6 +41,18 @@ namespace PAQO.Core.Find
             field,
             new Mapped<int, string>(
                 number => number.ToString(CultureInfo.InvariantCulture),
+                values
+            )
+        )
+        { }
+
+        /// <summary>
+        /// IN (value in array) expression for a PAQO query.
+        /// </summary>
+        public IN(string field, params DateTime[] values) : this(
+            field,
+            new Mapped<DateTime, string>(
+                date => date.Ticks.ToString(CultureInfo.InvariantCulture),
                 values
             )
         )

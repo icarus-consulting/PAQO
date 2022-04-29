@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 
+using System;
 using System.Globalization;
 
 namespace PAQO.Core.Find
@@ -43,6 +44,16 @@ namespace PAQO.Core.Find
         public EQ(string field, int value) : base(() =>
             new Expression("EQ",
                 new FieldCondition(field, value.ToString(CultureInfo.InvariantCulture))
+            )
+        )
+        { }
+
+        // <summary>
+        /// EQ expression for a PAQO query.
+        /// </summary>
+        public EQ(string field, DateTime value) : base(() =>
+            new Expression("EQ",
+                new FieldCondition(field, value.Ticks.ToString(CultureInfo.InvariantCulture))
             )
         )
         { }

@@ -70,6 +70,25 @@ namespace PAQO.Core.Find
         /// <param name="prop">name of the prop.</param>
         /// <param name="schema">value of the prop as string.</param>
         /// <param name="stringToBytes">swap to turn string value into bytes, type based on given schema.</param>
+        public INMatch(string propName, IEnumerable<long> values, IDictionary<string, string> propTypes) : this(
+            propName,
+            () =>
+            new Mapped<long, byte[]>(
+                value => BitConverter.GetBytes(value),
+                values
+            ).ToArray(),
+            new ScalarOf<bool>(() => propTypes.ContainsKey(propName)),
+            new TextOf(() => propTypes.ContainsKey(propName) ? propTypes[propName] : String.Empty)
+        )
+        { }
+
+        /// <summary>
+        /// Matches if given prop is equal.
+        /// Type is important and checked against the given schema.
+        /// </summary>
+        /// <param name="prop">name of the prop.</param>
+        /// <param name="schema">value of the prop as string.</param>
+        /// <param name="stringToBytes">swap to turn string value into bytes, type based on given schema.</param>
         public INMatch(string propName, IEnumerable<int> values, IDictionary<string, string> propTypes) : this(
             propName,
             () =>
@@ -124,6 +143,9 @@ namespace PAQO.Core.Find
                         "integer", (propValue) => Ints(values()).Contains(new IntProp.AsInt(propValue).Value())
                     ),
                     new SwapIf<byte[], bool>(
+                        "date", (propValue) => Longs(values()).Contains(new IntProp.AsLong(propValue).Value())
+                    ),
+                    new SwapIf<byte[], bool>(
                         "switch", (propValue) => Bools(values()).Contains(new SwitchProp.IsOn(propValue).Value())
                     ),
                     new SwapIf<byte[], bool>(
@@ -167,6 +189,15 @@ namespace PAQO.Core.Find
             return
                 new Mapped<byte[], int>(
                     item => new IntProp.AsInt(item).Value(),
+                    bytes
+                ).ToArray();
+        }
+
+        private long[] Longs(byte[][] bytes)
+        {
+            return
+                new Mapped<byte[], long>(
+                    item => new IntProp.AsLong(item).Value(),
                     bytes
                 ).ToArray();
         }

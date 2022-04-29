@@ -51,6 +51,9 @@ namespace PAQO.Core.Schema
                         "integer", (data) => data.Length == 0 ? "0" : BitConverter.ToInt32(data, 0).ToString()
                     ),
                     new SwapIf<byte[], string>(
+                        "date", (data) => data.Length == 0 ? "0" : BitConverter.ToInt64(data, 0).ToString()
+                    ),
+                    new SwapIf<byte[], string>(
                         "switch", (data) => new TextOf(new BytesOf(data), Encoding.UTF8).AsString()
                     ),
                     new SwapIf<byte[], string>(

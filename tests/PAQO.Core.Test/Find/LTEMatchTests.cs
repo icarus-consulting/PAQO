@@ -22,6 +22,7 @@
 
 using PAQO.Core.Prop;
 using PAQO.Core.Schema;
+using System;
 using Test.PAQO.Schema;
 using Xunit;
 
@@ -88,6 +89,25 @@ namespace PAQO.Core.Find.Test
                 ).Matches(
                     new PropsOf(
                         new IntProp("MaxSpeed", value)
+                    )
+                )
+            );
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        public void MatchesDateLessOrEqualToGiven(int value)
+        {
+            var date = DateTime.Now;
+            Assert.True(
+                new LTEMatch(
+                    "BuyDate",
+                    date.Ticks,
+                    new VehiclesTestSchema().For("bike").Types()
+                ).Matches(
+                    new PropsOf(
+                        new DateProp("BuyDate", date.AddMinutes(value))
                     )
                 )
             );
