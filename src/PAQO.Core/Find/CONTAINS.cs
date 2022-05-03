@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 
+using System;
 using System.Globalization;
 
 namespace PAQO.Core.Find

@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 
+using System;
 using System.Globalization;
 
 namespace PAQO.Core.Find
@@ -53,6 +54,16 @@ namespace PAQO.Core.Find
         public LTE(string field, int value) : base(() =>
             new Expression("LTE",
                 new FieldCondition(field, value.ToString())
+            )
+        )
+        { }
+
+        /// <summary>
+        /// LTE (less than or equal) expression for a PAQO query.
+        /// </summary>
+        public LTE(string field, DateTime value) : base(() =>
+            new Expression("LTE",
+                new FieldCondition(field, value.Ticks.ToString())
             )
         )
         { }

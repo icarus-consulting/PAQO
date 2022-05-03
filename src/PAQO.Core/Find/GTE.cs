@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 
+using System;
 using System.Globalization;
 
 namespace PAQO.Core.Find
@@ -43,6 +44,16 @@ namespace PAQO.Core.Find
         public GTE(string field, int value) : base(() =>
             new Expression("GTE",
                 new FieldCondition(field, value.ToString())
+            )
+        )
+        { }
+
+        /// <summary>
+        /// GTE (greater than or equal) expression for a PAQO query.
+        /// </summary>
+        public GTE(string field, DateTime value) : base(() =>
+            new Expression("GTE",
+                new FieldCondition(field, value.Ticks.ToString())
             )
         )
         { }

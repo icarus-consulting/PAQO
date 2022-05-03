@@ -20,36 +20,37 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using PAQO.Core.Schema;
-using Test.PAQO.Schema;
+using System;
 using Xunit;
-using Yaapii.Atoms.Enumerable;
 
-namespace PAQO.Core.Test.Schema
+namespace PAQO.Core.Prop.Test
 {
-    public sealed class AlwaysPropTests
+    public sealed class DatePropTests
     {
         [Fact]
-        public void IncludesAlwaysProps()
+        public void HasName()
         {
-            var props = new AlwaysProps(new VehiclesTestSchema(), "bike");
-
-            var expected =
-                new string[]
-                {
-                    "id",
-                    "ModelName",
-                    "Name",
-                    "MaxSpeed",
-                    "HighestGearRatio",
-                    "BuyDate",
-                    "Damaged",
-                    "DriveType",
-                    "AntiTheftCode"
-                };
             Assert.Equal(
-                expected,
-                new AlwaysProps(new VehiclesTestSchema(), "bike")
+                "datetorial",
+                new DateProp(
+                    "datetorial",
+                    DateTime.Now
+                ).Name()
+            );
+        }
+
+        [Fact]
+        public void DeliversContent()
+        {
+            var date = DateTime.Now;
+            Assert.Equal(
+                date,
+                new DateProp.AsDate(
+                    new DateProp(
+                        "datetorial",
+                        date
+                    ).Content()
+                ).Value()
             );
         }
     }
