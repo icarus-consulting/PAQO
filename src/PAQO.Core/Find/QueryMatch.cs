@@ -23,7 +23,6 @@
 
 using PAQO.Core.Facets;
 using PAQO.Core.Schema;
-using PAQO.Editor.Tmx.Find;
 using System;
 using System.Collections.Generic;
 using Yaapii.Atoms.Enumerable;

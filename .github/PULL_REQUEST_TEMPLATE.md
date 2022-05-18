@@ -1,6 +1,6 @@
 ### Please check if the PR fulfills these requirements
 - [ ] I made sure my code builds
-- [ ] I ran the build script to verify all i-tests succeed
+- [ ] I ran the build script to verify all tests succeed
 - [ ] I merged the target branch (main) into this branch before pushing
 - [ ] The commit message follows our guidelines
 - [ ] Tests for the changes have been added (for bug fixes / features)

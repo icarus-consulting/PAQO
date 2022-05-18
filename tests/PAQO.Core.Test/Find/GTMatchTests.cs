@@ -22,7 +22,6 @@
 
 using PAQO.Core.Prop;
 using PAQO.Core.Schema;
-using PAQO.Editor.Tmx.Find;
 using System;
 using Test.PAQO.Schema;
 using Xunit;
