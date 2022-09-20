@@ -30,6 +30,7 @@ namespace PAQO.Core.Schema.Test
     public sealed class PropTypesTests
     {
         [Theory]
+        [InlineData("BuyDate", "date")]
         [InlineData("MaxSpeed", "integer")]
         [InlineData("HighestGearRatio", "decimal")]
         [InlineData("Name", "text")]

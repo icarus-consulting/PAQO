@@ -24,6 +24,7 @@
 using LiteDB;
 using PAQO.Core;
 using PAQO.Core.Facets;
+using PAQO.Core.Prop;
 using PAQO.Memory.LiteDB.Facets;
 using System;
 using System.Text;
@@ -70,10 +71,10 @@ namespace PAQO.Memory.LiteDB.Element.Test
                     new SwapBytesToBsonStringValue(),
                     database,
                     "bike"
-                ).Update(new ManyOf<IProp>(new FkProp("MaxSpeed", 180)));
+                ).Update(new ManyOf<IProp>(new FkProp("MaxSpeed", 225)));
 
                 Assert.Equal(
-                    BitConverter.GetBytes(180),
+                    BitConverter.GetBytes(225),
                     database.FindOne(Query.All())["_"]["MaxSpeed"].RawValue
                 );
             }
@@ -114,6 +115,86 @@ namespace PAQO.Memory.LiteDB.Element.Test
                 Assert.Equal(
                     225,
                     database.FindOne(Query.All())["MaxSpeed"].RawValue
+                );
+            }
+        }
+
+        [Fact]
+        public void UpdatesDatePropInDatabase()
+        {
+            using (var db = new LiteDatabase(new LDBMemoryEngine()))
+            {
+                var date = new DateTime(2022, 9, 20);
+                var vehicleBson =
+                    new BsonDocument(
+                        MapOf.New(
+                            //Typed property
+                            "BuyDate", new BsonValue(date),
+                            //Raw property
+                            "_",
+                            new BsonDocument(
+                                MapOf.New(
+                                    KvpOf.New("BuyDate", new BsonValue(BitConverter.GetBytes(date.Ticks)))
+                                )
+                            )
+                        )
+                    );
+
+                var database = db.GetCollection("bike");
+                database.Insert(vehicleBson);
+
+                new LDBElement(
+                    vehicleBson,
+                    new VehiclesTestSchema(),
+                    new SwapBytesToBsonValue(),
+                    new SwapBytesToBsonStringValue(),
+                    database,
+                    "bike"
+                ).Update(new ManyOf<IProp>(new DateProp("BuyDate", new DateTime(2022, 9, 21))));
+
+                Assert.Equal(
+                    new DateTime(2022, 9, 21),
+                    database.FindOne(Query.All())["BuyDate"].RawValue
+                );
+            }
+        }
+
+        [Fact]
+        public void UpdatesRawDatePropInDatabase()
+        {
+            using (var db = new LiteDatabase(new LDBMemoryEngine()))
+            {
+                var date = new DateTime(2022, 9, 20);
+                var vehicleBson =
+                    new BsonDocument(
+                        MapOf.New(
+                            //Typed property
+                            "BuyDate", new BsonValue(date),
+                            //Raw property
+                            "_",
+                            new BsonDocument(
+                                MapOf.New(
+                                    KvpOf.New("BuyDate", new BsonValue(BitConverter.GetBytes(date.Ticks)))
+                                )
+                            )
+                        )
+                    );
+
+                var database = db.GetCollection("bike");
+                database.Insert(vehicleBson);
+
+                new LDBElement(
+                    vehicleBson,
+                    new VehiclesTestSchema(),
+                    new SwapBytesToBsonValue(),
+                    new SwapBytesToBsonStringValue(),
+                    database,
+                    "bike"
+                ).Update(new ManyOf<IProp>(new DateProp("BuyDate", new DateTime(2022, 9, 21))));
+
+                Assert.Equal(
+                    BitConverter.GetBytes(new DateTime(2022, 9, 21).Ticks),
+                    database.FindOne(Query.All())["_"]["BuyDate"].RawValue
                 );
             }
         }

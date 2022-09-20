@@ -23,6 +23,8 @@
 using LiteDB;
 using PAQO.Core;
 using PAQO.Core.Facets;
+using PAQO.Core.Prop;
+using System;
 using System.Text;
 using Yaapii.Atoms.Bytes;
 using Yaapii.Atoms.Text;
@@ -43,6 +45,9 @@ namespace PAQO.Memory.LiteDB.Facets
         {
             this.conversions =
                 new SwapSwitch<byte[], BsonValue>(
+                    new SwapIf<byte[], BsonValue>(
+                        "date", (data) => new BsonValue(new DateProp.AsDate(data).Value())
+                    ),
                     new SwapIf<byte[], BsonValue>(
                         "decimal", (data) => new ByteBsonDouble(data)
                     ),
