@@ -1,4 +1,4 @@
-#tool nuget:?package=GitReleaseManager&version=0.13.0
+#tool nuget:?package=GitReleaseManager&version=0.12.1
 #tool nuget:?package=OpenCover
 #tool nuget:?package=Codecov
 #addin "Cake.Figlet"
@@ -38,7 +38,7 @@ var isWindows                       = IsRunningOnWindows();
 
 // For GitHub release
 var owner                           = "icarus-consulting";
-var repository                      = "Yaapii.Pulse";
+var repository                      = "PAQO";
 
 // For AppVeyor NuGetFeed
 var nuGetSource             = "https://api.nuget.org/v3/index.json";
