@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 
+using System;
 using System.Globalization;
 
 namespace PAQO.Core.Find
@@ -53,6 +54,16 @@ namespace PAQO.Core.Find
         public LT(string field, int value) : base(() =>
             new Expression("LT",
                 new FieldCondition(field, value.ToString())
+            )
+        )
+        { }
+
+        /// <summary>
+        /// LT (less than) expression for a PAQO query.
+        /// </summary>
+        public LT(string field, DateTime value) : base(() =>
+            new Expression("LT",
+                new FieldCondition(field, value.Ticks.ToString())
             )
         )
         { }

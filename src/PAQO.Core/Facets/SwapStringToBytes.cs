@@ -65,6 +65,18 @@ namespace PAQO.Core.Schema
                         }
                     ),
                     new SwapIf<string, byte[]>(
+                        "date", (text) =>
+                        {
+                            var result = new byte[0];
+                            long integer = 0;
+                            if (long.TryParse(text, out integer))
+                            {
+                                result = BitConverter.GetBytes(integer);
+                            }
+                            return result;
+                        }
+                    ),
+                    new SwapIf<string, byte[]>(
                         "switch", (data) => new BytesOf(data, Encoding.UTF8).AsBytes()
                     ),
                     new SwapIf<string, byte[]>(

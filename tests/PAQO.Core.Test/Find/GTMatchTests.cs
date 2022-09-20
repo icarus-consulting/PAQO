@@ -22,7 +22,7 @@
 
 using PAQO.Core.Prop;
 using PAQO.Core.Schema;
-using PAQO.Editor.Tmx.Find;
+using System;
 using Test.PAQO.Schema;
 using Xunit;
 
@@ -41,6 +41,23 @@ namespace PAQO.Core.Find.Test
                 ).Matches(
                     new PropsOf(
                         new IntProp("MaxSpeed", 2)
+                    )
+                )
+            );
+        }
+
+        [Fact]
+        public void MatchesDateGreaterThanGiven()
+        {
+            var date = DateTime.Now;
+            Assert.True(
+                new GTMatch(
+                    "BuyDate",
+                    date.Ticks,
+                    new VehiclesTestSchema().For("bike").Types()
+                ).Matches(
+                    new PropsOf(
+                        new DateProp("BuyDate", date.AddDays(1))
                     )
                 )
             );

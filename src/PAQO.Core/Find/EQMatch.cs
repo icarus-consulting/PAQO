@@ -65,6 +65,18 @@ namespace PAQO.Core.Find
         /// Matches if given prop is equal.
         /// Type is important and checked against the given schema.
         /// </summary>
+        /// <param name="prop">name of the prop.</param>
+        /// <param name="schema">value of the prop as string.</param>
+        /// <param name="stringToBytes">swap to turn string value into bytes, type based on given schema.</param>
+        public EQMatch(string prop, long value, IDictionary<string, string> propTypes) : this(
+            prop, () => BitConverter.GetBytes(value), propTypes
+        )
+        { }
+
+        /// <summary>
+        /// Matches if given prop is equal.
+        /// Type is important and checked against the given schema.
+        /// </summary>
         /// <param name="propName">name of the prop.</param>
         /// <param name="schema">value of the prop as string.</param>
         /// <param name="stringToBytes">swap to turn string value into bytes, type based on given schema.</param>
@@ -95,6 +107,9 @@ namespace PAQO.Core.Find
                 ),
                 new SwapIf<byte[], bool>(
                     "integer", (propValue) => new IntProp.AsInt(value()).Value() == new IntProp.AsInt(propValue).Value()
+                ),
+                new SwapIf<byte[], bool>(
+                    "date", (propValue) => new IntProp.AsLong(value()).Value() == new IntProp.AsLong(propValue).Value()
                 ),
                 new SwapIf<byte[], bool>(
                     "switch", (propValue) => new SwitchProp.IsOn(value()).Value() == new SwitchProp.IsOn(propValue).Value()

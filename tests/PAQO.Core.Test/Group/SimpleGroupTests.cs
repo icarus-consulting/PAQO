@@ -23,6 +23,7 @@
 using PAQO.Core.Element;
 using PAQO.Core.Find;
 using PAQO.Core.Prop;
+using System;
 using Test.PAQO.Schema;
 using Xunit;
 using Yaapii.Atoms.Bytes;
@@ -82,6 +83,35 @@ namespace PAQO.Core.Group.Test
                 )
                 .Value()
                 .ID()
+            );
+        }
+
+        [Fact]
+        public void FindsElementByDate()
+        {
+            var group =
+                new SimpleGroup("bike",
+                    new VehiclesTestSchema(),
+                    new ManyOf<IElement>()
+                );
+
+            group.Add(
+                ManyOf.New(
+                    new SimpleElement("123-superbike",
+                        new DateProp("BuyDate", DateTime.Now.AddDays(-1))
+                    ),
+                    new SimpleElement("456-superbike",
+                        new DateProp("BuyDate", DateTime.Now.AddDays(1))
+                    ),
+                    new SimpleElement("789-superbike",
+                        new DateProp("BuyDate", DateTime.Now.AddDays(-2))
+                    )
+                )
+            );
+            Assert.Single(
+                group
+                .Find(new GT("BuyDate", DateTime.Now))
+                .Elements()
             );
         }
 

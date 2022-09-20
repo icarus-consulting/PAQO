@@ -42,6 +42,7 @@ namespace PAQO.Core.Test.Schema
                     "Name",
                     "MaxSpeed",
                     "HighestGearRatio",
+                    "BuyDate",
                     "Damaged",
                     "DriveType",
                     "AntiTheftCode"

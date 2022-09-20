@@ -20,43 +20,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using System;
+using Xunit;
 
-using System.Collections.Generic;
-using Yaapii.Atoms.Enumerable;
-
-namespace PAQO.Core.Find
+namespace PAQO.Core.Prop.Test
 {
-    /// <summary>
-    /// Matches if all contained matches match.
-    /// </summary>
-    public sealed class ANDMatch : MatchEnvelope
+    public sealed class DatePropTests
     {
-        /// <summary>
-        /// Matches if all contained matches match.
-        /// </summary>
-        public ANDMatch(params IMatch[] matches) : this(
-            new ManyOf<IMatch>(matches)
-        )
-        { }
+        [Fact]
+        public void HasName()
+        {
+            Assert.Equal(
+                "datetorial",
+                new DateProp(
+                    "datetorial",
+                    DateTime.Now
+                ).Name()
+            );
+        }
 
-        /// <summary>
-        /// Matches if all contained matches match.
-        /// </summary>
-        public ANDMatch(IEnumerable<IMatch> matches) : base(
-            new MatchOf("AND", props =>
-            {
-                bool matched = true;
-                foreach (var match in matches)
-                {
-                    if (!match.Matches(props))
-                    {
-                        matched = false;
-                        break;
-                    }
-                }
-                return matched;
-            })
-        )
-        { }
+        [Fact]
+        public void DeliversContent()
+        {
+            var date = DateTime.Now;
+            Assert.Equal(
+                date,
+                new DateProp.AsDate(
+                    new DateProp(
+                        "datetorial",
+                        date
+                    ).Content()
+                ).Value()
+            );
+        }
     }
 }

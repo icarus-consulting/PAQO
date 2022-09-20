@@ -23,6 +23,7 @@
 using PAQO.Core.Element;
 using PAQO.Core.Prop;
 using PAQO.Core.Schema;
+using System;
 using Test.PAQO.Schema;
 using Xunit;
 

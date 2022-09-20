@@ -63,6 +63,7 @@ namespace PAQO.Core.Schema
                             fixedSchema.Nodes(
                                 $"/schema/{context}/attributes"
                                 + "//*[self::integer"
+                                + " or self::date"
                                 + " or self::text"
                                 + " or self::decimal"
                                 + " or self::options"
