@@ -51,6 +51,9 @@ namespace PAQO.Memory.LiteDB.Facets
             this.conversions =
                 new SwapSwitch<byte[], BsonValue>(
                     new SwapIf<byte[], BsonValue>(
+                        "date", (data) => new BsonValue(new DateProp.AsDate(data).Value().ToString(CultureInfo.InvariantCulture))
+                    ),
+                    new SwapIf<byte[], BsonValue>(
                         "decimal", (data) =>
                         new BsonValue(
                             Math.Round(

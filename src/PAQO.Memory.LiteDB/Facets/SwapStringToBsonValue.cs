@@ -43,6 +43,9 @@ namespace PAQO.Memory.LiteDB.Facets
             this.conversions =
                 new SwapSwitch<string, BsonValue>(
                     new SwapIf<string, BsonValue>(
+                        "date", (str) => DateBsonValue(str)
+                    ),
+                    new SwapIf<string, BsonValue>(
                         "decimal", (str) => DoubleBsonValue(str)
                     ),
                     new SwapIf<string, BsonValue>(
@@ -96,6 +99,17 @@ namespace PAQO.Memory.LiteDB.Facets
             var result = new BsonValue(Guid.NewGuid()); //will never match (intended if prop not convertible)
             var parsed = false;
             if (Boolean.TryParse(input, out parsed))
+            {
+                result = new BsonValue(parsed);
+            }
+            return result;
+        }
+
+        private BsonValue DateBsonValue(string input)
+        {
+            var result = new BsonValue(Guid.NewGuid()); //will never match (intended if prop not convertible)
+            var parsed = DateTime.Now;
+            if (DateTime.TryParse(input, CultureInfo.InvariantCulture, DateTimeStyles.None, out parsed))
             {
                 result = new BsonValue(parsed);
             }
