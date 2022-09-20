@@ -255,13 +255,13 @@ Task("GitHubRelease")
     // here you see an expample to deploy all nuget packages in the root of the artifacts folder:
     var nugets = string.Join(",", GetFiles("./artifacts/*.nupkg").Select(f => f.FullPath) );
     Information($"Release files:{Environment.NewLine}  " + nugets.Replace(",", $"{Environment.NewLine}  "));
-    /*GitReleaseManagerAddAssets(
+    GitReleaseManagerAddAssets(
         gitHubToken,
         owner,
         repository,
         version,
         nugets
-    );*/
+    );
     GitReleaseManagerPublish(gitHubToken, owner, repository, version);
 });
 
