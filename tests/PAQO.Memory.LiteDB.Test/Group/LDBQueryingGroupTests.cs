@@ -141,6 +141,54 @@ namespace PAQO.Memory.LiteDB.Group.Test
         }
 
         [Fact]
+        public void WorksWithEmptyValues()
+        {
+            using (var engine = new LDBMemoryEngine())
+            {
+                var schema = new VehiclesTestSchema();
+                var swapToBson = new SwapBytesToBsonValue();
+                var swapToBsonString = new SwapBytesToBsonStringValue();
+                var group =
+                    new LDBQueryingGroup("bike",
+                        schema,
+                        engine,
+                        swapToBson,
+                        swapToBsonString
+                    );
+
+                var db = new LiteDatabase(engine).GetCollection("bike");
+
+                var id = 1;
+                new Each<IElement>(
+                    element =>
+                        db.Insert(
+                            new LDBElementBson(
+                                "bike",
+                                element,
+                                schema,
+                                swapToBson,
+                                swapToBsonString
+                            ).Value()
+                        ),
+                    Repeated.New(() =>
+                        new SimpleElement(id++.ToString(),
+                            new TextProp("Name", $"Car #{id}"),
+                            new TextProp("ModelName", id == 5 ? "" : "model")
+                        ),
+                        16
+                    )
+                ).Invoke();
+
+                Assert.Single(
+                    group
+                        .Find(new EQ("ModelName", ""))
+                        .Elements()
+                );
+            }
+        }
+
+
+        [Fact]
         public void DeliversAllElements()
         {
             using (var engine = new LDBMemoryEngine())

@@ -157,7 +157,7 @@ namespace PAQO.Memory.LiteDB.Find
         /// </summary>
         private BsonExpression MultiMatch(string propName, IXML paq, Func<string, BsonValue, BsonExpression> build)
         {
-            var strValue = new XMLString(paq, "./paqs/paq/value/text()").Value();
+            var strValue = new XMLString(paq, "./paqs/paq/value/text()", "").Value();
             var types = PropTypes(propName);
             BsonExpression result = Query.EQ("_id", null); //an id will never be null. This is used as a workaround for having a query that has always a negative result.
             if (types.Count > 0)
