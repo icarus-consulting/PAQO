@@ -6,7 +6,7 @@ image: Previous Visual Studio 2022
 configuration: Release
 environment:
   GITHUB_TOKEN:
-    secure: ZRmWQTJF0B2l6J9HqJ0wjN7Rcupd0lNnGHGrXWV/DABnCwgHNttcIB6hK+XhFKwd
+    secure: //RzPD6sJwALrAUPet5ffD2C82ETjhYb1XR30sWRHtqNK5E9Q9xN96GNP9OfWCwX
   NUGET_TOKEN:
     secure: 98IgrlPZtuTVTyHn7qGwmzNkhUOZ6KVUmRaZxXUPO4KNaIWZAiWcPf93ibwXiqr9
   APPVEYOR_TOKEN:
