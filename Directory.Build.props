@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <!--Version used for all projects in this solution-->
+    <VersionPrefix>1.2.0</VersionPrefix>
+    <!--NuGet Package Infos-->
+    <Copyright>ICARUS Consulting GmbH $([System.DateTime]::Now.Year)</Copyright>
+  </PropertyGroup>
+</Project>
