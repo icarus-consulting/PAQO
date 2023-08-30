@@ -63,11 +63,9 @@ namespace PAQO.Grpc.Core
                 {
                     QueryBrix =
                         new TextOf(
-                            new InputOf(
-                                query
-                                    .AsBrix()
-                                    .Print(new RebuildMedia())
-                            )
+                            query
+                                .AsBrix()
+                                .Print(new RebuildMedia()).ToString()
                         ).AsString()
                 };
             })
