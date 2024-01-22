@@ -167,6 +167,29 @@ namespace PAQO.Core.Group.Test
         }
 
         [Fact]
+        public void FiltersDateRange()
+        {
+            var date = DateTime.Now;
+            Assert.Single(
+                new SimpleGroup("bike",
+                    new VehiclesTestSchema(),
+                    new ManyOf<IElement>(
+                        new SimpleElement(
+                            "123-superbike",
+                            new DateProp("BuyDate", date)
+                        ),
+                        new SimpleElement(
+                            "789-ordinary-bike",
+                            new DateProp("BuyDate", date.AddDays(-2))
+                        )
+                    )
+                )
+                .Find(new GTE("BuyDate", date.AddDays(-1)))
+                .Elements()
+            );
+        }
+
+        [Fact]
         public void ChainsQueries()
         {
             Assert.Equal(

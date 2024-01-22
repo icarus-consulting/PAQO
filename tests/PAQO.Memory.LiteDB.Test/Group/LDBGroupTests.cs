@@ -27,7 +27,9 @@ using PAQO.Core.Find;
 using PAQO.Core.Group;
 using PAQO.Core.Prop;
 using PAQO.Memory.LiteDB.Facets;
+using System;
 using System.Diagnostics;
+using System.Globalization;
 using Test.PAQO.Schema;
 using Xunit;
 using Yaapii.Atoms.Enumerable;
@@ -74,6 +76,37 @@ namespace PAQO.Memory.LiteDB.Group.Test
                         )
                     ).AsDouble()
                     + "ms"
+                );
+            }
+        }
+
+        [Fact]
+        public void FiltersDateRange()
+        {
+            using (var engine = new LDBMemoryEngine())
+            {
+                var date = DateTime.Now;
+                Assert.Single(
+                    new LDBGroup(
+                        new SimpleGroup("bike",
+                            new VehiclesTestSchema(),
+                            new ManyOf<IElement>(
+                                new SimpleElement(
+                                    "123-superbike",
+                                    new DateProp("BuyDate", date)
+                                ),
+                                new SimpleElement(
+                                    "789-ordinary-bike",
+                                    new DateProp("BuyDate", date.AddDays(-2))
+                                )
+                            )
+                        ),
+                        new VehiclesTestSchema(),
+                        "bike",
+                        engine
+                    )
+                    .Find(new GTE("BuyDate", date.AddDays(-1)))
+                    .Elements()
                 );
             }
         }
