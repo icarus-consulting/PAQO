@@ -108,8 +108,11 @@ namespace PAQO.Memory.LiteDB.Facets
         private BsonValue DateBsonValue(string input)
         {
             var result = new BsonValue(Guid.NewGuid()); //will never match (intended if prop not convertible)
-            var parsed = DateTime.Now;
-            if (DateTime.TryParse(input, CultureInfo.InvariantCulture, DateTimeStyles.None, out parsed))
+            if(long.TryParse(input, out long val))
+            {
+                result = new BsonValue(new DateTime(val));
+            }
+            else if (DateTime.TryParse(input, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsed))
             {
                 result = new BsonValue(parsed);
             }
