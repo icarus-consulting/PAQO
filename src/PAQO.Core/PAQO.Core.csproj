@@ -6,9 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BriX" Version="5.0.2" />
-    <PackageReference Include="Yaapii.Pulse" Version="2.0.2" />
-    <PackageReference Include="Yaapii.Xml" Version="2.0.2" />
+    <PackageReference Include="BriX" Version="6.0.0" />
+    <PackageReference Include="Yaapii.Pulse" Version="3.0.0" />
+    <PackageReference Include="Yaapii.Xml" Version="3.0.0" />
   </ItemGroup>
 
 </Project>
