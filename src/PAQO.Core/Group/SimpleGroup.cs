@@ -94,15 +94,15 @@ namespace PAQO.Core.Group
                     Mapped.New(element => element.ID(), withIDs)
                 );
 
-            if (new MoreThan(1, existing).Value())
+            if (new MoreThan(0, existing).Value())
             {
                 throw new InvalidOperationException($"Could not add elements [{String.Join(", ", existing)}] because they already exist.");
             }
-            this.elements.AddRange(elements);
+            this.elements.AddRange(withIDs);
             this.elementIDs.AddRange(
                 Mapped.New(
                     element => element.ID(),
-                    this.elements
+                    withIDs
                 )
             );
         }
