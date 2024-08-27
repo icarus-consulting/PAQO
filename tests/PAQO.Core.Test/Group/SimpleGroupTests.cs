@@ -87,6 +87,52 @@ namespace PAQO.Core.Group.Test
         }
 
         [Fact]
+        public void AddsMultipleElements()
+        {
+            var group =
+                new SimpleGroup("bike",
+                    new VehiclesTestSchema(),
+                    new ManyOf<IElement>()
+                );
+
+            group.Add(
+                ManyOf.New(
+                    new SimpleElement("123-superbike",
+                        new TextProp("Name", "the most wonderful bike")
+                    )
+                )
+            );
+            group.Add(
+               ManyOf.New(
+                   new SimpleElement("456-superbike",
+                       new TextProp("Name", "the second most wonderful bike")
+                   )
+               )
+           );
+            group.Add(
+               ManyOf.New(
+                   new SimpleElement("789-superbike",
+                       new TextProp("Name", "the third most wonderful bike")
+                   )
+               )
+           );
+            group.Add(
+               ManyOf.New(
+                   new SimpleElement("135-superbike",
+                       new TextProp("Name", "the  fourth most wonderful bike")
+                   )
+               )
+           );
+            Assert.Equal(
+                new ManyOf("123-superbike", "456-superbike", "789-superbike", "135-superbike"),
+                Mapped.New(
+                    el => el.ID(),
+                    group.Elements()
+                )
+            );
+        }
+
+        [Fact]
         public void FindsElementByDate()
         {
             var group =
