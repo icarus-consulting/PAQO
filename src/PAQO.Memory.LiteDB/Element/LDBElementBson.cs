@@ -45,8 +45,8 @@ namespace PAQO.Memory.LiteDB.Element
             string elementType,
             IElement element,
             ISchema schema,
-            ISwap<string, byte[], BsonValue> swapPropToBsonValue,
-            ISwap<string, byte[], BsonValue> swapPropToBsonStringValue
+            Core.ISwap<string, byte[], BsonValue> swapPropToBsonValue,
+            Core.ISwap<string, byte[], BsonValue> swapPropToBsonStringValue
         ) : this(
             () => elementType,
             element,
@@ -64,8 +64,8 @@ namespace PAQO.Memory.LiteDB.Element
             Func<string> elementType,
             IElement element,
             ISchema schema,
-            ISwap<string, byte[], BsonValue> swapPropToBsonValue,
-            ISwap<string, byte[], BsonValue> swapPropToBsonStringValue
+            Core.ISwap<string, byte[], BsonValue> swapPropToBsonValue,
+            Core.ISwap<string, byte[], BsonValue> swapPropToBsonStringValue
         )
         {
             this.bson =
@@ -89,8 +89,8 @@ namespace PAQO.Memory.LiteDB.Element
             string elementType,
             IElement element,
             ISchema schema,
-            ISwap<string, byte[], BsonValue> swapToBsonValue,
-            ISwap<string, byte[], BsonValue> swapToBsonString
+            Core.ISwap<string, byte[], BsonValue> swapToBsonValue,
+            Core.ISwap<string, byte[], BsonValue> swapToBsonString
         )
         {
             var doc = new BsonDocument();

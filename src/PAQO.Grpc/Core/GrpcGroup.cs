@@ -50,7 +50,7 @@ namespace PAQO.Grpc.Core
             private readonly string elementType;
             private readonly IEnumerable<IElement> elements;
             private readonly ScalarOf<Group.Group.GroupClient> service;
-            private readonly ISwap<IQuery, IGroup> toNewGroup;
+            private readonly PAQO.Core.ISwap<IQuery, IGroup> toNewGroup;
 
             /// <summary>
             /// Group which is queried and updated via GRPC.#

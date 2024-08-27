@@ -61,8 +61,8 @@ namespace PAQO.Memory.LiteDB.Group
             string elementType,
             ISchema schema,
             ILiteEngine memory,
-            ISwap<string, byte[], BsonValue> swapPropToBsonValue,
-            ISwap<string, byte[], BsonValue> swapPropToBsonStringValue
+            Core.ISwap<string, byte[], BsonValue> swapPropToBsonValue,
+            Core.ISwap<string, byte[], BsonValue> swapPropToBsonStringValue
         ) : this(
             elementType,
             schema,
@@ -86,8 +86,8 @@ namespace PAQO.Memory.LiteDB.Group
             ISchema schema,
             IGroup origin,
             ILiteEngine memory,
-            ISwap<string, byte[], BsonValue> swapPropToBsonValue,
-            ISwap<string, byte[], BsonValue> swapPropToBsonStringValue
+            Core.ISwap<string, byte[], BsonValue> swapPropToBsonValue,
+            Core.ISwap<string, byte[], BsonValue> swapPropToBsonStringValue
         ) : this(
             elementType,
             schema,
@@ -111,8 +111,8 @@ namespace PAQO.Memory.LiteDB.Group
             ISchema schema,
             IGroup origin,
             ILiteEngine memory,
-            ISwap<string, byte[], BsonValue> swapPropToBsonValue,
-            ISwap<string, byte[], BsonValue> swapPropToBsonStringValue,
+            Core.ISwap<string, byte[], BsonValue> swapPropToBsonValue,
+            Core.ISwap<string, byte[], BsonValue> swapPropToBsonStringValue,
             bool hasOriginGroup
         )
         {

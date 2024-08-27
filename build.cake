@@ -1,7 +1,4 @@
-#tool nuget:?package=OpenCover
-#tool nuget:?package=Codecov
 #addin "Cake.Figlet"
-#addin nuget:?package=Cake.Codecov
 
 var target = Argument("target", "Default");
 var configuration   = "Release";
