@@ -1,14 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="BriX" Version="6.0.0" />
-    <PackageReference Include="Yaapii.Pulse" Version="3.0.0" />
-    <PackageReference Include="Yaapii.Xml" Version="3.0.0" />
-  </ItemGroup>
-
+  <ItemGroup></ItemGroup>
+  <Choose>
+    <When Condition="'$(Configuration)'=='Release'">
+      <ItemGroup>
+        <ProjectReference Include="..\..\..\BriX\src\BriX\BriX.csproj" />
+        <ProjectReference Include="..\..\..\Yaapii.Pulse\src\Yaapii.Pulse\Yaapii.Pulse.csproj" />
+        <ProjectReference Include="..\..\..\Yaapii.Xml\src\Yaapii.Xml\Yaapii.Xml.csproj" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <PackageReference Include="BriX" Version="6.0.0" />
+        <PackageReference Include="Yaapii.Pulse" Version="3.0.0" />
+        <PackageReference Include="Yaapii.Xml" Version="3.0.0" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
 </Project>
