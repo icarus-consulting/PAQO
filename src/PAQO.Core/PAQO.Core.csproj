@@ -2,10 +2,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Configurations>Debug;Release</Configurations>
+    <UseProjectReferences>False</UseProjectReferences>
   </PropertyGroup>
   <ItemGroup></ItemGroup>
   <Choose>
-    <When Condition="'$(Configuration)'=='Release'">
+    <When Condition="'$(UseProjectReferences)'=='True'">
       <ItemGroup>
         <ProjectReference Include="..\..\..\BriX\src\BriX\BriX.csproj" />
         <ProjectReference Include="..\..\..\Yaapii.Pulse\src\Yaapii.Pulse\Yaapii.Pulse.csproj" />
