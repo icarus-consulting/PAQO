@@ -1,4 +1,4 @@
-#addin nuget:?package=Cake.Figlet&version=2.0.1
+#addin "Cake.Figlet"
 
 var target = Argument("target", "Default");
 var configuration   = "Release";
@@ -45,18 +45,6 @@ var gitHubToken             = "";
 var nugetReleaseToken       = "";
 var appVeyorFeedToken       = "";
 
-void RunDotNet(string arguments)
-{
-	var exitCode = StartProcess("dotnet", new ProcessSettings {
-		Arguments = arguments
-	});
-
-	if(exitCode != 0)
-	{
-		throw new Exception($"dotnet {arguments} failed with exit code {exitCode}");
-	}
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 // Clean
 ///////////////////////////////////////////////////////////////////////////////
@@ -83,7 +71,7 @@ Task("Restore")
     var projects = GetFiles("./**/*.csproj");
     foreach(var project in projects)
     {
-		RunDotNet($"restore \"{project.FullPath}\"");
+        DotNetCoreRestore(project.GetDirectory().FullPath);
     }
 });
 
@@ -123,7 +111,11 @@ Task("Build")
 		if(!blacklistModules.Contains(module.GetDirectoryName()))
 		{
 			Information($"Building {module.GetDirectoryName()}");
-			RunDotNet($"build \"{module.FullPath}\" --configuration {configuration} --no-restore /p:VersionPrefix={version}");
+
+			DotNetCoreBuild(
+				module.FullPath,
+				settings
+			);
 		}
 		else
 		{
@@ -152,7 +144,10 @@ Task("Test")
 		if(!blacklistUnitTests.Contains(test.GetDirectoryName()))
 		{
 			Information($"Testing {test.GetDirectoryName()}");
-			RunDotNet($"test \"{test.FullPath}\" --configuration {configuration} --no-restore");
+			DotNetCoreTest(
+				test.FullPath,
+				settings
+			);
 		}
 		else
 		{
@@ -187,7 +182,11 @@ Task("NuGet")
 		if(!blacklistModules.Contains(module.GetDirectoryName()))
 		{
 			Information($"Creating NuGet package for {module.GetDirectoryName()}");
-			RunDotNet($"pack \"{module}\" --configuration {configuration} --output \"{buildArtifacts}\" --include-symbols --no-restore /p:VersionPrefix={version}");
+
+			DotNetCorePack(
+				module.ToString(),
+				settings
+			);
 		}
 		else
 		{

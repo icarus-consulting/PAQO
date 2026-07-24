@@ -258,60 +258,6 @@ $CAKE_EXE_INVOCATION = if ($IsLinux -or $IsMacOS) {
     "`"$CAKE_EXE`""
 }
 
-function Start-CakeProcess {
-    param(
-        [string]$CakeExecutable,
-        [string[]]$Arguments,
-        [bool]$UseMono
-    )
-
-    $startInfo = New-Object System.Diagnostics.ProcessStartInfo
-    $startInfo.UseShellExecute = $false
-    $startInfo.RedirectStandardOutput = $false
-    $startInfo.RedirectStandardError = $false
-
-    if ($UseMono) {
-        $startInfo.FileName = 'mono'
-        $startInfo.Arguments = ((@("`"$CakeExecutable`"") + $Arguments) -join ' ')
-    }
-    else {
-        $startInfo.FileName = $CakeExecutable
-        $startInfo.Arguments = ($Arguments -join ' ')
-    }
-
-    $startInfo.WorkingDirectory = $PSScriptRoot
-
-    $process = New-Object System.Diagnostics.Process
-    $process.StartInfo = $startInfo
-    [void]$process.Start()
-    $process.WaitForExit()
-    return $process.ExitCode
-}
-
-function Normalize-ProcessEnvironment {
-    $entries = [System.Environment]::GetEnvironmentVariables('Process').GetEnumerator()
-    $normalized = New-Object 'System.Collections.Generic.Dictionary[string,string]' ([System.StringComparer]::OrdinalIgnoreCase)
-    $originalNames = New-Object System.Collections.Generic.List[string]
-
-    foreach ($entry in $entries) {
-        $name = [string]$entry.Key
-        $value = [string]$entry.Value
-        $originalNames.Add($name) | Out-Null
-
-        if (-not $normalized.ContainsKey($name) -or [string]::IsNullOrEmpty($normalized[$name])) {
-            $normalized[$name] = $value
-        }
-    }
-
-    foreach ($name in $originalNames) {
-        [System.Environment]::SetEnvironmentVariable($name, ([string]$null), 'Process')
-    }
-
-    foreach ($entry in $normalized.GetEnumerator()) {
-        [System.Environment]::SetEnvironmentVariable($entry.Key.ToUpperInvariant(), $entry.Value, 'Process')
-    }
-}
-
  # Build an array (not a string) of Cake arguments to be joined later
 $cakeArguments = @()
 if ($Script) { $cakeArguments += "`"$Script`"" }
@@ -322,11 +268,10 @@ if ($ShowDescription) { $cakeArguments += "--showdescription" }
 if ($DryRun) { $cakeArguments += "--dryrun" }
 $cakeArguments += $ScriptArgs
 
-Normalize-ProcessEnvironment
-
 # Start Cake
 Write-Host "Running build script..."
-$cakeExitCode = Start-CakeProcess -CakeExecutable $CAKE_EXE -Arguments $cakeArguments -UseMono ($IsLinux -or $IsMacOS)
+Invoke-Expression "& $CAKE_EXE_INVOCATION $($cakeArguments -join " ")"
+$cakeExitCode = $LASTEXITCODE
 
 # Clean up environment variables that were created earlier in this bootstrapper
 $env:CAKE_PATHS_TOOLS = $null
