@@ -15,9 +15,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <PackageReference Include="BriX" Version="6.0.0" />
-        <PackageReference Include="Yaapii.Pulse" Version="3.0.0" />
-        <PackageReference Include="Yaapii.Xml" Version="3.0.0" />
+        <PackageReference Include="BriX" Version="21.5.3" />
+        <PackageReference Include="Yaapii.Pulse" Version="21.5.3" />
+        <PackageReference Include="Yaapii.Xml" Version="21.5.3" />
       </ItemGroup>
     </Otherwise>
   </Choose>
