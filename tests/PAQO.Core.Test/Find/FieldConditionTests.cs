@@ -32,7 +32,7 @@ namespace PAQO.Core.Find.Test
         public void Compiles()
         {
             Assert.Equal(
-                @"<paq><field>field</field><value>value</value></paq>",
+                @"<operand><paq><field>field</field><value>value</value></paq></operand>",
                 new BxBlock("operand",
                     new FieldCondition("field", "value")
                         .AsBrix()
